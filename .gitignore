@@ -5,3 +5,4 @@ terraform/.terraform/
 terraform/*.tfstate
 terraform/*.tfstate.*
 terraform/*.tfvars
+__pychache__/*.pyc
