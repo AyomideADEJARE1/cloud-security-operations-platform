@@ -1,0 +1,13 @@
+{
+  "name": "cloud-security-operations-platform",
+  "version": "1.0.0",
+  "description": "Application component for the Cloud Security Operations Platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.24.4"
+  }
+}
