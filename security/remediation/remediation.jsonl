@@ -1,0 +1,1 @@
+{"incident_id": "INC-20260922222420545813", "action": "BLOCK_SOURCE_IP", "source_ip": "192.168.1.50", "status": "SIMULATED", "timestamp": "2026-09-22T22:34:12.247934Z", "message": "Simulated blocking of source IP 192.168.1.50."}
