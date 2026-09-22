@@ -1,7 +1,11 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
+const morgan = require("morgan");
 
 const app = express();
+
+app.use(morgan("combined"));
+
 const PORT = process.env.PORT || 3000;
 
 const dbConfig = {
