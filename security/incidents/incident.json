@@ -1,0 +1,13 @@
+{
+  "incident_id": "INC-0001",
+  "alert": "BRUTE_FORCE_DETECTED",
+  "severity": "HIGH",
+  "status": "OPEN",
+  "timestamp": "2026-09-22T21:00:05Z",
+  "source_ip": "192.168.1.50",
+  "description": "Multiple failed authentication attempts detected.",
+  "response": {
+    "action": "PENDING",
+    "timestamp": null
+  }
+}
