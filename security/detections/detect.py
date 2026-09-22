@@ -1,5 +1,10 @@
 import json
 import sys
+from collections import defaultdict
+
+failed_auth_attempts = defaultdict(int)
+
+BRUTE_FORCE_THRESHOLD = 5
 
 
 def detect_event(log_line):
@@ -17,13 +22,27 @@ def detect_event(log_line):
         }
 
     if event.get("event") == "authentication_failed":
+        source_ip = event.get("source_ip", "unknown")
+
+        failed_auth_attempts[source_ip] += 1
+
+        if failed_auth_attempts[source_ip] >= BRUTE_FORCE_THRESHOLD:
+            return {
+                "alert": "BRUTE_FORCE_DETECTED",
+                "severity": "HIGH",
+                "message": "Multiple failed authentication attempts detected.",
+                "timestamp": event.get("timestamp"),
+                "source_ip": source_ip,
+                "attempts": failed_auth_attempts[source_ip]
+            }
+
         return {
             "alert": "FAILED_AUTHENTICATION",
             "severity": "MEDIUM",
             "message": "A user authentication attempt failed.",
             "timestamp": event.get("timestamp"),
             "username": event.get("username"),
-            "source_ip": event.get("source_ip")
+            "source_ip": source_ip
         }
 
     return None
