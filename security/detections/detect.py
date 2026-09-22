@@ -16,6 +16,16 @@ def detect_event(log_line):
             "timestamp": event.get("timestamp")
         }
 
+    if event.get("event") == "authentication_failed":
+        return {
+            "alert": "FAILED_AUTHENTICATION",
+            "severity": "MEDIUM",
+            "message": "A user authentication attempt failed.",
+            "timestamp": event.get("timestamp"),
+            "username": event.get("username"),
+            "source_ip": event.get("source_ip")
+        }
+
     return None
 
 
