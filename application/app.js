@@ -16,6 +16,14 @@ const dbConfig = {
   database: process.env.DB_NAME
 };
 
+function securityLog(event, details = {}) {
+  console.log(JSON.stringify({
+    timestamp: new Date().toISOString(),
+    event,
+    ...details
+  }));
+}
+
 app.get("/", (req, res) => {
   res.json({
     application: "Cloud Security Operations Platform",
@@ -35,7 +43,10 @@ app.get("/health", async (req, res) => {
       database: "connected"
     });
   } catch (error) {
-    console.error("Database connection failed:", error.message);
+    securityLog("database_connection_failed", {
+      endpoint: "/health",
+      error: error.message
+    });
 
     res.status(503).json({
       status: "unhealthy",
